@@ -1,6 +1,6 @@
 require './config/environment'
 
-class EditorsController < Sinatra::Base
+class EditorsController < ApplicationController
 
   configure do
     set :public_folder, 'public'

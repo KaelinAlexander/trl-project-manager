@@ -1,0 +1,16 @@
+<h1>Editing an existing project!</h1>
+<form action = '/projects/<%= @project.id %>/edit' method='post'>
+<input id='hidden' type='hidden' name='_method' value='patch'>
+<p>Author:
+<input type='text' id='author' name='author' value='<%= @project.author %>' if='author'>
+<p>Title:
+<input type='text' id='title' name='title' value='<%= @project.title %>' if='title'>
+<p>Notes:
+<input type='text' id='notes' name='notes' value='<%= @project.notes %>' if='notes' size=30>
+<p>Status:
+<input type='radio' id='in_progress' value='FALSE' name='complete'>
+<label for='status'>In Progress</label>
+<input type='radio' id='completed' value='TRUE' name='complete'>
+<label for='status'>Completed</label>
+<input type='submit' id='submit' value='submit'>
+</form>

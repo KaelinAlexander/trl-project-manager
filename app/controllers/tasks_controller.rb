@@ -1,6 +1,6 @@
 require './config/environment'
 
-class TasksController < Sinatra::Base
+class TasksController < ApplicationController
 
   configure do
     set :public_folder, 'public'
@@ -9,6 +9,10 @@ class TasksController < Sinatra::Base
 
   get "/" do
     erb :index
+  end
+
+  get '/tasks/new' do
+    erb :'/tasks/new'
   end
 
 end

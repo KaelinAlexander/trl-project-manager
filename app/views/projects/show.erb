@@ -1,0 +1,7 @@
+<h1><%= @project.author %></h1>
+<p><%= @project.notes %></h1></p>
+<br>
+<a href='/projects/<%= @project.id %>/edit'>Edit this project</a>
+<br>
+<a href='/tasks/new'>Add a task to this project.</a>
+<a href='/projects/<%= @project.id %>/delete'>Delete this project.</a>

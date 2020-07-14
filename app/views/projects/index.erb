@@ -1,1 +1,19 @@
 <h1>Here are all of your current projects:</h1>
+<br>
+<% @projects.each do |project| %>
+<div>
+<h2><%= project.author %></h2>
+<h3><%= project.title %></h3>
+<% if project.complete == TRUE %>
+<h3>Project Complete</h3>
+<% else %>
+<h3>Project Underway</h3>
+<% end %>
+<br>
+<a href='/projects/<%= project.id %>'>Project Details</a>
+<br>
+</div>
+<br>
+<br>
+<% end %>
+<p>Make a <a href='/projects/new'>new project.</a></p>
