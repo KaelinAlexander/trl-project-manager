@@ -1,7 +1,16 @@
 <h1><%= @project.author %></h1>
 <p><%= @project.notes %></h1></p>
 <br>
-<a href='/projects/<%= @project.id %>/edit'>Edit this project</a>
 <br>
-<a href='/tasks/new'>Add a task to this project.</a>
+<% @project.tasks.each do |task| %>
+<h5><%= task.name %></h5>
+<a href='/tasks/<%= task.id %>/edit'>Edit Task</a>
+<a href='/tasks/<%= task.id %>/delete'>Delete Task</a>
+<% end %>
+<br>
+<br>
+<a href='/<%= @project.id %>/tasks/new'>Add a task to this project.</a>
+<br>
+<br>
+<a href='/projects/<%= @project.id %>/edit'>Edit this project</a>
 <a href='/projects/<%= @project.id %>/delete'>Delete this project.</a>

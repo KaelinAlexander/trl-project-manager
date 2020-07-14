@@ -25,12 +25,6 @@ class ProjectsController < ApplicationController
     erb :'/projects/new'
   end
 
-  # get '/projects/show' do
-  #   not_logged_in_redirect
-  #   @project = Project.find_by_id(params[:id])
-  #   erb :'/projects/show'
-  # end
-
   get '/projects/:id' do
     not_logged_in_redirect
     @project = Project.find_by_id(params[:id])

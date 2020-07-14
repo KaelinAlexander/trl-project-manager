@@ -1,0 +1,28 @@
+<h1>Editing <%= @task.name %></h1>
+<form action = '/tasks/<%= @task.id %>/edit' method='post'>
+<input id='hidden' type='hidden' name='_method' value='patch'>
+<p>Name:
+<input type='text' id='name' name='name' value='<%= @task.name %>' if='name'>
+<p>Start Date:
+<input type='date' id='start_date' name='start_date' value='<%= @task.start_date %>' if='start_date'>
+<p>End Date:
+<input type='date' id='end_date' name='end_date' value='<%= @task.end_date %>' if='end_date'>
+<p>Status:
+  <br>
+  <br>
+<input type='checkbox' id='inquired' value='<% if @task.inquired == TRUE %><%= TRUE %><% else %><%= FALSE %><% end %>' name='inquired'>
+<label for='status'>Inquired</label>
+<input type='checkbox' id='assigned' value='<% @task.assigned %>' name='assigned'>
+<label for='status'>Assigned</label>
+<input type='checkbox' id='transmitted' value='<% @task.transmitted %>' name='transmitted'>
+<label for='status'>Transmitted</label>
+<input type='checkbox' id='completed' value='<% @task.completed %>' name='completed'>
+<label for='status'>Completed</label>
+<input type='checkbox' id='invoiced' value='<% @task.invoiced %>' name='invoiced'>
+<label for='status'>Invoiced</label>
+<input type='checkbox' id='paid' value='<% @task.paid %>' name='paid'>
+<label for='status'>Paid</label>
+<br>
+<br>
+<input type='submit' id='submit' value='Submit'>
+</form>

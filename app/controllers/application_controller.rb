@@ -73,6 +73,11 @@ class ApplicationController < Sinatra::Base
         User.find_by_id(session[:user_id])
       end
 
+      def task_list
+        base_tasks = ["Reader Report", "Developmental Edit", "Copyedit", "Proofread", "Cover Design", "Interior Design"]
+        base_tasks
+      end
+
     end
 
 end
