@@ -11,6 +11,7 @@ class CreateTasks < ActiveRecord::Migration
       t.boolean :completed
       t.boolean :invoiced
       t.boolean :paid
+      t.integer :project_id
     end
   end
 

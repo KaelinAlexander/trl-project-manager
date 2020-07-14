@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20200713184809) do
     t.string  "title"
     t.text    "notes"
     t.boolean "complete"
-    t.integer "task_id"
+    t.integer "user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 20200713184809) do
     t.boolean "completed"
     t.boolean "invoiced"
     t.boolean "paid"
+    t.integer "project_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "username"
-    t.string  "email"
-    t.string  "password_digest"
-    t.string  "title"
-    t.integer "project_id"
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.string "title"
   end
 
 end

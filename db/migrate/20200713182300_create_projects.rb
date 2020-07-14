@@ -6,7 +6,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :title
       t.text :notes
       t.boolean :complete
-      t.integer :task_id
+      t.integer :user_id
     end
   end
 
