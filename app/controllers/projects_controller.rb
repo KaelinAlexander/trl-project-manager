@@ -12,6 +12,11 @@ class ProjectsController < ApplicationController
     erb :'projects/index'
   end
 
+  get '/projects/completed' do
+    @projects = Project.all
+    erb :'projects/completed'
+  end
+
   post '/projects' do
     @project = current_user.projects.build(params)
     if @project.save

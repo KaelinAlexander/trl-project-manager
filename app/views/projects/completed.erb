@@ -1,8 +1,8 @@
-<h1>Here are all of your current projects:</h1>
+<h1>Here are all of your completed projects:</h1>
 <br>
 <% @projects.each do |project| %>
 <div>
-  <% if project.complete == FALSE %>
+  <% if project.complete == TRUE %>
     <h2><%= project.author %></h2>
     <h3><%= project.title %></h3>
     <br>
@@ -12,6 +12,6 @@
 <br>
 <br>
 <br>
-<p>To view completed projects, <a href='/projects/completed'>click here.</a></p>
+<p>To view in-process projects, <a href='/projects'>click here.</a></p>
 <p>Make a <a href='/projects/new'>new project.</a></p>
 <p>Add an <a href='editors/new'>editor.</a></p>

@@ -10,4 +10,13 @@
 <br>
 <br>
 <h3>Current Projects:</h3>
+<% @my_tasks.each do |at| %>
+<% task = Task.find_by_id(at.task_id) %>
+<% project = Project.find_by_id(task.project_id) %>
+<%= task.name %> for <%= project.author %>'s <%= project.title %>
 <br>
+<br>
+<% end %>
+<br>
+<p><a href='/editors/<%= @editor.id %>/edit'>Edit</a> this editor's entry.</p>
+<p><a href='/editors/<%= @editor.id %>/delete'>Delete</a> this editor's entry.</p>
