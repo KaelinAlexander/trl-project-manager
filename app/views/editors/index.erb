@@ -1,0 +1,21 @@
+<h1>Here are all of the current editors on the bench:</h1>
+<br>
+<% @editors.each do |editor| %>
+<div>
+<h2><%= editor.name %></h2>
+<br>
+<h3>E-Mail: <%= editor.email %></h3>
+<br>
+<h3>Phone: <%= editor.phone %></h3>
+<br>
+<h3>Website: <%= editor.website %></h3>
+<br>
+<h3>Current Projects:</h3>
+<br>
+<a href='/editor/<%= project.id %>'>Editor Details</a>
+<br>
+</div>
+<br>
+<br>
+<% end %>
+<p>Add a <a href='/editors/new'>new editor.</a></p>

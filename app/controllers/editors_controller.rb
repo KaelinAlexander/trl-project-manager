@@ -15,6 +15,10 @@ class EditorsController < ApplicationController
     erb :'/editors/new'
   end
 
+  post '/editors' do
+
+  end
+
   get '/editors/:id' do
     @editor = Editor.find_by_id(params[:id])
     erb :'/editors/show'
@@ -28,6 +32,6 @@ class EditorsController < ApplicationController
   get '/editors/:id/delete' do
     @editor = Editor.find_by_id(params[:id])
     erb :'/editors/delete'
-
+  end
 
 end

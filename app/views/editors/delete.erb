@@ -1,0 +1,8 @@
+<h1>Are you sure you want to remove <%= @editor.name %> from the TRL roster?</h1>
+<br>
+<a href='/editors/<%= @editor.id %>'>No, I changed my mind.</a>
+<br>
+<form action='/editors/<%= @editor.id %>' method='post'>
+  <input id='hidden' type='hidden' name='_method' value='delete'>
+  <input type='submit' value='Yes, Remove Editor'>
+</form>

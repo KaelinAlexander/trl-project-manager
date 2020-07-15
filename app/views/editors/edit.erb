@@ -1,0 +1,15 @@
+<h1>Edit information for <%= @editor.name %></h1>
+<form action = '/editors/<%= @editor.id %>/edit' method='post'>
+<input id='hidden' type='hidden' name='_method' value='patch'>
+<p>Name:
+<input type='text' id='author' name='name' value='<%= @editor.name %>' if='name'>
+<p>Email:
+<input type='email' id='title' name='email' value='<%= @editor.email %>' if='email'>
+<p>Phone:
+<input type='tel' id='notes' name='phone' size=30 value='<%= @editor.phone %>' if='phone'>
+<p>Website:
+<input type='text' id='notes' name='website' size=30 value='<%= @editor.website %>' if='website'>
+<p>Notes:
+<input type='text' id='notes' name='notes' size=30 value='<%= @editor.notes %>' if='notes'>
+<input type='submit' id='submit' value='Submit'>
+</form>
