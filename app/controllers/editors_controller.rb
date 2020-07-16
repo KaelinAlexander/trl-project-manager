@@ -25,9 +25,21 @@ class EditorsController < ApplicationController
       end
   end
 
+  get '/editors/rescue' do
+    erb :'/editors/rescue'
+  end
+
+  get '/editors/included' do
+    erb :'/editors/included'
+  end
+
+  get '/editors/:id/reassign' do
+    @editor = Editor.find_by_id(params[:id])
+    erb :'/editors/reassign'
+  end
+
   get '/editors/:id' do
     @editor = Editor.find_by_id(params[:id])
-    @my_tasks = my_tasks(params[:id])
     erb :'/editors/show'
   end
 
@@ -57,17 +69,31 @@ class EditorsController < ApplicationController
 
   delete '/editors/:id' do
     @editor = Editor.find_by_id(params[:id])
-    @my_tasks = my_tasks(params[:id])
-    # if @editor && !@my_tasks.empty? && logged_in
-    #   @my_tasks.each do |assignment|
-    #     assignment[:editor_id] = nil
-    #     assignment.save
-    #     end
-    #   @editor.destroy
-    #     redirect "/tasks/reassign"
-    # elsif @editor && logged_in
-    #   @editor.destroy
-      redirect "/reassign"
+    if Editor.count < 2
+      redirect "/editors/rescue"
+    elsif @editor && !@editor.tasks.empty? && logged_in
+      redirect "/editors/#{@editor.id}/reassign"
+    else @editor && logged_in
+      @editor.destroy
+      redirect "/editors"
+    end
+  end
+
+  patch '/editors/:id/reassign' do
+    @new_tasks = params[:project][:tasks]
+    @new_tasks.each do |task|
+      reassign = Task.find_by_id(task[:id])
+      new_editor = Editor.find_by(name: task[:name])
+        if reassign.editors.include?(new_editor)
+          redirect "/editors/included"
+        else
+          reassign.editors << new_editor
+          reassign.save
+        end
+      end
+        @drop = AssignedTask.find_by(editor_id: params[:id])
+        @drop.destroy
+        redirect "/editors"
   end
 
 end

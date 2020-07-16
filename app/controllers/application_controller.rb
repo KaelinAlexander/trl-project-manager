@@ -78,17 +78,18 @@ class ApplicationController < Sinatra::Base
         base_tasks
       end
 
-      def my_tasks(searcher)
-        finder = searcher.to_i
-        my_tasks = []
-        @all_at = AssignedTask.all
-        @all_at.each do |task|
-          if task[:editor_id] == finder
-            my_tasks << task
-          end
-        end
-        my_tasks
-      end
+      # def my_tasks(searcher)
+      #   Just use editor.tasks or task.editors // task.editors.first.name
+          # finder = searcher.to_i
+      #   my_tasks = []
+      #   @all_at = AssignedTask.all
+      #   @all_at.each do |task|
+      #     if task[:editor_id] == finder
+      #       my_tasks << task
+      #     end
+      #   end
+      #   my_tasks
+      # end
 
     end
 

@@ -9,7 +9,8 @@
 <input type='date' name='project[tasks][][end_date]'>
 <br>
 <p>Editor:
-  <select name='project[tasks[][editor]' id='editor'>
+  <select name='project[tasks][][editor]' id='editor'>
+    <option disabled selected value> - Select an Editor - </option>
     <% @editors.each do |editor| %>
     <option value='<%= editor.name %>'><%= editor.name %></option>
     <% end %>

@@ -1,1 +1,10 @@
-<h1><%= @task.name %> for <%= @project.author %></h1>
+<%= @task.name %> for <%= @task.project.author %>'s <%= @task.project.title %>
+<% if @task.editors.empty? %>
+<h4>This task needs an editor. <a href='/tasks/<%= @task.id %>/edit'>Assign one?</a></h4>
+<% else %>
+<h4>Assigned to: <%= @task.editors.first.name %></h4>
+<% end %>
+<br>
+<h4><a href='/tasks/<%= @task.id %>/edit'>Edit</a> this task.</h4>
+<br>
+<h4>Back to the <a href='/projects/<%= @task.project.id %>'>project page.</a></h4>

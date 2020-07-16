@@ -11,10 +11,6 @@ class TasksController < ApplicationController
     erb :index
   end
 
-  get "/reassign" do
-    erb :'/tasks/reassign'
-  end
-
   get '/:id/tasks/new' do
     @project = Project.find_by_id(params[:id])
     @default_tasks = task_list
@@ -69,7 +65,7 @@ class TasksController < ApplicationController
         else
           @new = AssignedTask.create(editor_id: @editor.id, task_id: @task.id)
         end
-          redirect "/projects/#{@task.project_id}"
+          redirect "/tasks/#{@task.id}"
       else
         redirect "/tasks/#{@task.id}/edit"
       end
@@ -87,11 +83,6 @@ class TasksController < ApplicationController
         @task.destroy
       end
         redirect "/projects/#{@project.id}"
-    end
-
-    get '/tasks/reassign' do
-      @assigned = AssignedTask.all
-      erb :'/tasks/reassign'
     end
 
 end

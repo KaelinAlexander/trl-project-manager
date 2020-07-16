@@ -11,6 +11,7 @@
   <select name='editor' id='editor'>
     <% @assigned = AssignedTask.find_by(task_id: @task.id) %>
     <% @editors = Editor.all %>
+    <option disabled selected value> - Select an Editor - </option>
     <% @editors.each do |editor| %>
     <option value='<%= editor.name %>' <% if @assigned && @assigned.editor_id == editor.id %>selected<% end %>><%= editor.name %></option>
     <% end %>

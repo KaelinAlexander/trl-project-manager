@@ -1,0 +1,19 @@
+Before deletion, please reassign the following tasks:
+<form action='/editors/<%= @editor.id %>/reassign' method='post'>
+<input id='hidden' type='hidden' name='_method' value='patch'>
+<% @editor.tasks.each do |task| %>
+  <%= task.name %> for <%= task.project.author %>'s <%= task.project.title %>
+  <input id='hidden' type='hidden' name='project[tasks][][id]' value='<%= task.id %>'>
+  <p>New Editor:
+    <select name='project[tasks][][name]' id='editor'>
+      <% Editor.all.each do |editor| %>
+      <% if editor.id == @editor.id %>
+      <option disabled selected value='<%= editor.name %>'><%= editor.name %></option>
+      <% else %>
+      <option value='<%= editor.name %>'><%= editor.name %></option>
+      <% end %>
+      <% end %>
+    </select>
+<% end %>
+<input id='submit' type='submit' value='Submit'>
+</form>

@@ -9,13 +9,15 @@
 <h3>Notes: <%= @editor.notes %></h3>
 <br>
 <br>
+<% if @editor.tasks.empty? %>
+<h3>This editor currently has no projects.</h3>
+<% else %>
 <h3>Current Projects:</h3>
-<% @my_tasks.each do |at| %>
-<% task = Task.find_by_id(at.task_id) %>
-<% project = Project.find_by_id(task.project_id) %>
-<%= task.name %> for <%= project.author %>'s <%= project.title %>
+<% @editor.tasks.each do |task| %>
+<%= task.name %> for <%= task.project.author %>'s <%= task.project.title %>
 <br>
 <br>
+<% end %>
 <% end %>
 <br>
 <p><a href='/editors/<%= @editor.id %>/edit'>Edit</a> this editor's entry.</p>
