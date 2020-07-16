@@ -24,8 +24,8 @@ class TasksController < ApplicationController
     @new_tasks.each do |task|
       if task[:name]
           new_task = Task.create(name: task[:name], start_date: task[:start_date], end_date: task[:end_date])
+          new_task.editors << Editor.find_by(name: task[:editor])
           @project.tasks << new_task
-          AssignedTask.create(task_id: new_task.id, editor_id: task[:editor])
       end
     end
     redirect to "/projects/#{@project.id}"

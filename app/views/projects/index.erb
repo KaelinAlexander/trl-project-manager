@@ -1,6 +1,5 @@
 <h1>Here are all of your current projects:</h1>
 <br>
-<% if @projects %>
 <% @projects.each do |project| %>
 <div>
   <% if project.complete == FALSE %>
@@ -25,7 +24,5 @@
 <% end %>
 <br>
 <p>To view completed projects, <a href='/projects/completed'>click here.</a></p>
-<% else %>
 <p>Make a <a href='/projects/new'>new project.</a></p>
 <p>Add an <a href='editors/new'>editor.</a></p>
-<% end %>
