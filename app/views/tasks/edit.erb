@@ -19,17 +19,17 @@
 <p>Status:
   <br>
   <br>
-<input type='checkbox' id='inquired' value='<% if @task.inquired == TRUE %><%= TRUE %><% else %><%= FALSE %><% end %>' name='inquired'>
+<input type='checkbox' id='inquired' value=TRUE name='inquired' <% if @task.inquired == TRUE %>checked<% end %>>
 <label for='status'>Inquired</label>
-<input type='checkbox' id='assigned' value='<% @task.assigned %>' name='assigned'>
+<input type='checkbox' id='assigned' value=TRUE name='assigned' <% if @task.assigned == TRUE %>checked<% end %>>
 <label for='status'>Assigned</label>
-<input type='checkbox' id='transmitted' value='<% @task.transmitted %>' name='transmitted'>
+<input type='checkbox' id='transmitted' value=TRUE name='transmitted' <% if @task.transmitted == TRUE %>checked<% end %>>
 <label for='status'>Transmitted</label>
-<input type='checkbox' id='completed' value='<% @task.completed %>' name='completed'>
+<input type='checkbox' id='completed' value=TRUE name='completed' <% if @task.completed == TRUE %>checked<% end %>>
 <label for='status'>Completed</label>
-<input type='checkbox' id='invoiced' value='<% @task.invoiced %>' name='invoiced'>
+<input type='checkbox' id='invoiced' value=TRUE name='invoiced' <% if @task.invoiced == TRUE %>checked<% end %>>
 <label for='status'>Invoiced</label>
-<input type='checkbox' id='paid' value='<% @task.paid %>' name='paid'>
+<input type='checkbox' id='paid' value=TRUE name='paid' <% if @task.paid == TRUE %>checked<% end %>>
 <label for='status'>Paid</label>
 <br>
 <br>

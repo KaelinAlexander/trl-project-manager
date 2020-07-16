@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     @new_tasks = params[:project][:tasks]
     @new_tasks.each do |task|
       if task[:name] && task[:name] != ""
-          new_task = Task.create(name: task[:name], start_date: task[:start_date], end_date: task[:end_date])
+          new_task = Task.create(name: task[:name], start_date: task[:start_date], end_date: task[:end_date], inquired: FALSE, assigned: FALSE, transmitted: FALSE, completed: FALSE, invoiced: FALSE, paid: FALSE)
           if task[:editor]
             new_task.editors << Editor.find_by(name: task[:editor])
             @project.tasks << new_task
@@ -55,12 +55,36 @@ class TasksController < ApplicationController
         @task.name = params[:name]
         @task.start_date = params[:start_date]
         @task.end_date = params[:end_date]
-        @task.inquired = params[:inquired]
-        @task.assigned = params[:assigned]
-        @task.transmitted = params[:transmitted]
-        @task.completed = params[:completed]
-        @task.invoiced = params[:invoiced]
-        @task.paid = params[:params]
+        if params[:inquired]
+          @task.inquired = params[:inquired]
+        else
+          @task.inquired = FALSE
+        end
+        if params[:assigned]
+          @task.assigned = params[:assigned]
+        else
+          @task.assigned = FALSE
+        end
+        if params[:transmitted]
+          @task.transmitted = params[:transmitted]
+        else
+          @task.transmitted = FALSE
+        end
+        if params[:completed]
+          @task.completed = params[:completed]
+        else
+          @task.completed = FALSE
+        end
+        if params[:invoiced]
+          @task.invoiced = params[:invoiced]
+        else
+          @task.invoiced = FALSE
+        end
+        if params[:paid]
+          @task.paid = params[:paid]
+        else
+          @task.paid = FALSE
+        end
         @task.save
         if params[:editor]
           @editor = Editor.find_by(name: params[:editor])
