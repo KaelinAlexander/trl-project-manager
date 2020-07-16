@@ -22,10 +22,14 @@ class TasksController < ApplicationController
     @project = Project.find_by_id(params[:id])
     @new_tasks = params[:project][:tasks]
     @new_tasks.each do |task|
-      if task[:name]
+      if task[:name] && task[:name] != ""
           new_task = Task.create(name: task[:name], start_date: task[:start_date], end_date: task[:end_date])
-          new_task.editors << Editor.find_by(name: task[:editor])
-          @project.tasks << new_task
+          if task[:editor]
+            new_task.editors << Editor.find_by(name: task[:editor])
+            @project.tasks << new_task
+          else
+            @project.tasks << new_task
+          end
       end
     end
     redirect to "/projects/#{@project.id}"
@@ -46,7 +50,6 @@ class TasksController < ApplicationController
   patch '/tasks/:id/edit' do
     @task = Task.find_by_id(params[:id])
     @project = Project.find_by_id(@task.project_id)
-    @assigned = AssignedTask.find_by(task_id: @task.id)
     @editor = Editor.find_by(name: params[:editor])
       if @project.user_id == current_user.id
         @task.name = params[:name]
@@ -59,11 +62,10 @@ class TasksController < ApplicationController
         @task.invoiced = params[:invoiced]
         @task.paid = params[:params]
         @task.save
-        if @assigned
-          @assigned.editor_id = @editor.id
-          @assigned.save
-        else
-          @new = AssignedTask.create(editor_id: @editor.id, task_id: @task.id)
+        if params[:editor]
+          @editor = Editor.find_by(name: params[:editor])
+          @task.editors << @editor
+          @task.save
         end
           redirect "/tasks/#{@task.id}"
       else

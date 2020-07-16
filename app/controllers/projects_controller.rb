@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   get '/projects' do
     @projects = Project.all
+    @needs = Task.all.select{ |task| task.editors.empty? }
     erb :'projects/index'
   end
 

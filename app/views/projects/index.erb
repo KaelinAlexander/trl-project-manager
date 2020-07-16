@@ -1,8 +1,9 @@
+<% if !@projects.empty? %>
 <h1>Here are all of your current projects:</h1>
 <br>
 <% @projects.each do |project| %>
 <div>
-  <% if project.complete == FALSE %>
+  <% if project.complete == FALSE || project.complete == nil %>
     <h2><%= project.author %></h2>
     <h3><%= project.title %></h3>
     <br>
@@ -11,18 +12,20 @@
 <% end %>
 <br>
 <br>
-<% @needs = Task.all.select{ |task| task.editors.empty? } %>
-<% if @needs.empty? %>
-<h3>No tasks need assigning.</h3>
-<% else %>
-<h3>The following tasks need assigning:</h3>
-<br>
-<% @needs.each do |task| %>
-<%= task.name %> for <%= task.project.author %>
-<br>
-<% end %>
+<% if @needs && @needs.empty? %>
+  <h3>No tasks need assigning.</h3>
+<% elsif @needs %>
+  <h3>The following tasks need assigning:</h3>
+  <br>
+  <% @needs.each do |need| %>
+  <%= need.name %> for <%= need.project.author %>
+  <br>
+  <% end %>
 <% end %>
 <br>
 <p>To view completed projects, <a href='/projects/completed'>click here.</a></p>
 <p>Make a <a href='/projects/new'>new project.</a></p>
 <p>Add an <a href='editors/new'>editor.</a></p>
+<% else %>
+<h1>You have no projects. <a href='/projects/new'>Make one?</a></h1>
+<% end %>
