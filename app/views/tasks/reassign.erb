@@ -1,7 +1,1 @@
-<h1>The following tasks need reassignment:</h1>
-<% @assigned.each do |at| %>
-<% if at.editor_id == nil %>
-<% task = Task.find_by_id(at.editor_id) %>
-<% project = Project.find_by_id(task.project_id) %>
-<h4><%= task.name %> for <%= project.name %></h4>
-<% end %>
+<h1>Congrats, you landed on the reassignment page.</h1>

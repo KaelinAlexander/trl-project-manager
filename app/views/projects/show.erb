@@ -4,15 +4,6 @@
 <br>
 <% @project.tasks.each do |task| %>
 <h4><%= task.name %></h4>
-<% @assigned = AssignedTask.find_by(task_id: task.id) %>
-<% if @assigned %>
-  <% @editor = Editor.find_by_id(@assigned.editor_id) %>
-  <% if @editor %>
-    <h5>Current editor: <%= @editor.name %></h5>
-    <% end %>
-<% else %>
-<h5>No editor yet assigned. <a href='/tasks/<%= task.id %>/edit'>Assign?</a></h5>
-<% end %>
 <br>
 <a href='/tasks/<%= task.id %>'>View Task</a>
 <a href='/tasks/<%= task.id %>/edit'>Edit Task</a>

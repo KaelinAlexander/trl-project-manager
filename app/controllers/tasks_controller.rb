@@ -11,6 +11,10 @@ class TasksController < ApplicationController
     erb :index
   end
 
+  get "/reassign" do
+    erb :'/tasks/reassign'
+  end
+
   get '/:id/tasks/new' do
     @project = Project.find_by_id(params[:id])
     @default_tasks = task_list

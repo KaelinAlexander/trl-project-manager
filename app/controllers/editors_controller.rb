@@ -58,17 +58,16 @@ class EditorsController < ApplicationController
   delete '/editors/:id' do
     @editor = Editor.find_by_id(params[:id])
     @my_tasks = my_tasks(params[:id])
-    if @editor && @my_tasks && logged_in
-      @my_tasks.each do |assignment|
-        assignment.editor_id = nil
-        assignment.save
-        end
-      @editor.destroy
-      redirect "/tasks/reassign"
-    elsif @editor && logged_in
-      @editor.destroy
-      redirect "/editors"
-    end
+    # if @editor && !@my_tasks.empty? && logged_in
+    #   @my_tasks.each do |assignment|
+    #     assignment[:editor_id] = nil
+    #     assignment.save
+    #     end
+    #   @editor.destroy
+    #     redirect "/tasks/reassign"
+    # elsif @editor && logged_in
+    #   @editor.destroy
+      redirect "/reassign"
   end
 
 end
