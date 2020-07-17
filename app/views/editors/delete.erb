@@ -1,8 +1,15 @@
-<h1>Are you sure you want to remove <%= @editor.name %> from the TRL roster?</h1>
+<h4>Are you sure you want to remove <%= @editor.name %> from the TRL roster?</h4>
 <br>
-<a href='/editors/<%= @editor.id %>'>No, I changed my mind.</a>
+<button class='btn grey waves-effect waves-light text-white'>
+<a href='/editors/<%= @editor.id %>' style='color:white'>Nevermind</a>
+<i class='material-icons right'>send</i>
+</button>
+<br>
 <br>
 <form action='/editors/<%= @editor.id %>' method='post'>
   <input id='hidden' type='hidden' name='_method' value='delete'>
-  <input type='submit' value='Yes, Remove Editor'>
+  <button type='submit' id='submit' class='btn grey waves-effect waves-light'>
+  Delete Project
+  <i class='material-icons right'>send</i>
+  </button>
 </form>

@@ -1,25 +1,30 @@
+<button class='btn grey waves-effect waves-light text-white right'>
+<a href='/tasks/new' style='color:white'>New Task</a>
+<i class='material-icons right'>add</i>
+</button>
 
-<h5>Here's the task lineup:</h5>
+<h4>CURRENT TASKS</h4>
+<br>
+<br>
 <div class='row'>
 <% @tasks.each do |task| %>
 <div class="col s12 m6 l4">
-  <div class="card grey">
+  <div class="card small grey">
     <div class="card-content white-text">
-      <span class="card-title"><%= task.name %>'s <%= task.project.author %></span>
+      <span class="card-title"><%= task.name %> for <%= task.project.title %></span>
       <p>Start: <%= task.start_date %></p>
       <p>End: <%= task.end_date %></p>
+      <br>
       <% if !task.editors.empty? %>
       <p>Editor: <%= task.editors.first.name %></p>
       <% else %>
       <p>No editor assigned.
-        <br>
-        <a href='/tasks/<%= task.id %>/edit'>Assign one?</a></p>
       <% end %>
     </div>
     <div class="card-action">
-      <a class="white-text" href='/tasks/<%= task.id %>'>Details</a>
-      <a class="white-text" href='/tasks/<%= task.id %>/edit'>Edit</a>
-      <a class="white-text" href='/tasks/<%= task.id %>/delete'>Delete</a>
+      <a class="white-text" href='/tasks/<%= task.id %>'><i class="material-icons">format_list_bulleted</i></a>
+      <a class="white-text" href='/tasks/<%= task.id %>/edit'><i class="material-icons">edit</i></a>
+      <a class="white-text" href='/tasks/<%= task.id %>/delete'><i class="material-icons">delete</i></a>
     </div>
   </div>
 </div>
@@ -33,17 +38,16 @@
   <div class='row'>
   <% @needs.each do |need| %>
   <div class="col s12 m6 l4">
-    <div class="card grey">
+    <div class="card small grey">
       <div class="card-content white-text">
         <span class="card-title"><%= need.name %>'s <%= need.project.author %></span>
         <p>Start: <%= need.start_date %></p>
         <p>End: <%= need.end_date %></p>
-        <p><a href='/tasks/<%= need.id %>/edit'>Assign an editor?</a></p>
       </div>
       <div class="card-action">
-        <a class="white-text" href='/tasks/<%= need.id %>'>Details</a>
-        <a class="white-text" href='/tasks/<%= need.id %>/edit'>Edit</a>
-        <a class="white-text" href='/tasks/<%= need.id %>/delete'>Delete</a>
+        <a class="white-text" href='/tasks/<%= task.id %>'><i class="material-icons">format_list_bulleted</i></a>
+        <a class="white-text" href='/tasks/<%= task.id %>/edit'><i class="material-icons">edit</i></a>
+        <a class="white-text" href='/tasks/<%= task.id %>/delete'><i class="material-icons">delete</i></a>
       </div>
     </div>
   </div>

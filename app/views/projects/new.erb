@@ -6,11 +6,20 @@
 <input type='text' id='title' name='title'>
 <p>Notes:
 <input type='text' id='notes' name='notes' size=30>
+
 <p>Status:
-<input type='radio' id='in_progress' value='FALSE' name='complete'>
-<label for='status'>In Progress</label>
-<input type='radio' id='completed' value='TRUE' name='complete'>
-<label for='status'>Completed</label>
+
+<label>
+<input type='radio' id='status' value='FALSE' name='complete'>
+<span>In Progress</span>
+</label>
+
+<label>
+<input type='radio' id='status' value='TRUE' name='complete'>
+<span>Completed</span>
+</label>
+
+<br>
 <br>
 <button type='submit' id='submit' class='btn grey waves-effect waves-light'>
 Create Project

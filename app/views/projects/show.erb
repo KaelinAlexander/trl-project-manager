@@ -1,20 +1,36 @@
-<h1><%= @project.author %></h1>
+<button class='btn grey waves-effect waves-light text-white right'>
+<a href='/<%= @project.id %>/tasks/new' style='color:white'>New Task</a>
+<i class='material-icons right'>add</i>
+</button>
+<h4><%= @project.author %>'s <%= @project.title %></h4>
 <p><%= @project.notes %></h1></p>
 <br>
-<br>
+<h4>TASKS:</h4>
+<div class='row'>
+<% if !@project.tasks.empty? %>
 <% @project.tasks.each do |task| %>
-<h4><%= task.name %></h4>
-<br>
-<a href='/tasks/<%= task.id %>'>View Task</a>
-<a href='/tasks/<%= task.id %>/edit'>Edit Task</a>
-<a href='/tasks/<%= task.id %>/delete'>Delete Task</a>
-<br>
-<br>
+<div class="col s12 m6 l4">
+  <div class="card grey">
+    <div class="card-content white-text">
+      <span class="card-title"><%= task.name %></span>
+      <p>Start: <%= task.start_date %></p>
+      <p>End: <%= task.end_date %></p>
+      <br>
+      <% if !task.editors.empty? %>
+      <p>Editor: <%= task.editors.first.name %></p>
+      <% else %>
+      <p>No editor assigned.
+      <% end %>
+    </div>
+    <div class="card-action">
+      <a class="white-text" href='/tasks/<%= task.id %>'><i class="material-icons">format_list_bulleted</i></a>
+      <a class="white-text" href='/tasks/<%= task.id %>/edit'><i class="material-icons">edit</i></a>
+      <a class="white-text" href='/tasks/<%= task.id %>/delete'><i class="material-icons">delete</i></a>
+    </div>
+  </div>
+</div>
 <% end %>
-<br>
-<br>
-<a href='/<%= @project.id %>/tasks/new'>Add a task to this project.</a>
-<br>
-<br>
-<a href='/projects/<%= @project.id %>/edit'>Edit this project</a>
-<a href='/projects/<%= @project.id %>/delete'>Delete this project.</a>
+</div>
+<% else %>
+<p>Currently, there aren't any tasks for this project.</p>
+<% end %>

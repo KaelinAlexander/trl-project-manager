@@ -54,8 +54,16 @@ class TasksController < ApplicationController
   get '/tasks/:id' do
     not_logged_in_redirect
     @task = Task.find_by_id(params[:id])
-    @project = Project.find_by_id(@task.project_id)
-    erb :'/tasks/show'
+    if @task
+      @project = Project.find_by_id(@task.project_id)
+      if @project
+        erb :'/tasks/show'
+      else
+        redirect '/projects'
+      end
+    else
+        redirect '/tasks'
+    end
   end
 
   get '/tasks/:id/edit' do

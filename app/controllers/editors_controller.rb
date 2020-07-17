@@ -44,7 +44,11 @@ class EditorsController < ApplicationController
   get '/editors/:id' do
     not_logged_in_redirect
     @editor = Editor.find_by_id(params[:id])
-    erb :'/editors/show'
+    if @editor
+      erb :'/editors/show'
+    else
+      redirect '/editors'
+    end
   end
 
   get '/editors/:id/edit' do

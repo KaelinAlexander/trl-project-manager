@@ -1,5 +1,9 @@
+<button class='btn grey waves-effect waves-light text-white right'>
+<a href='/projects/new' style='color:white'>New Project</a>
+<i class='material-icons right'>add</i>
+</button>
 <% if !@projects.empty? %>
-<h3>Here are all of our current projects:</h3>
+<h4>CURRENT PROJECTS</h4>
 <div class="row">
 <% @projects.each do |project| %>
   <% if project.complete == FALSE || project.complete == nil %>
@@ -10,9 +14,10 @@
         <p><%= project.notes %></p>
       </div>
       <div class="card-action">
-        <a class="white-text" href='/projects/<%= project.id %>'>Details</a>
-        <a class="white-text" href='/projects/<%= project.id %>/edit'>Edit</a>
-        <a class="white-text" href='/projects/<%= project.id %>/delete'>Delete</a>
+        <a class="white-text" href='/projects/<%= project.id %>'><i class="material-icons">format_list_bulleted</i></a>
+        <a class="white-text" href='/projects/<%= project.id %>/edit'><i class="material-icons">edit</i></a>
+        <a class="white-text" href='/projects/<%= project.id %>/delete'><i class="material-icons">delete</i></a>
+        <a class="white-text" href='/<%= project.id %>/tasks/new'><i class="material-icons">add</i></a>
       </div>
     </div>
   </div>
@@ -22,8 +27,12 @@
 <br>
 <br>
 <br>
-<p>To view completed projects, <a href='/projects/completed'>click here.</a></p>
-<p>Make a <a href='/projects/new'>new project.</a></p>
+<button class='btn grey waves-effect waves-light text-white'>
+<a href='/projects/completed' style='color:white'>Completed Projects</a>
+<i class='material-icons right'>access_time</i>
+</button>
+
 <% else %>
-<h1>You have no projects. <a href='/projects/new'>Make one?</a></h1>
+<h4>You have no projects.</h4>
+<br>
 <% end %>

@@ -1,21 +1,28 @@
-<h1>Here are all of the current editors on the bench:</h1>
+<button class='btn grey waves-effect waves-light text-white right'>
+<a href='/editors/new' style='color:white'>New Editor</a>
+<i class='material-icons right'>add</i>
+</button>
+<h4>EDITORS</h4>
 <br>
+<div class="row">
 <% @editors.each do |editor| %>
-<div>
-<h2><%= editor.name %></h2>
-<br>
-<h3>E-Mail: <%= editor.email %></h3>
-<br>
-<h3>Phone: <%= editor.phone %></h3>
-<br>
-<h3>Website: <%= editor.website %></h3>
-<br>
-<h3>Current Projects:</h3>
-<br>
-<a href='/editors/<%= editor.id %>'>Editor Details</a>
-<br>
-</div>
-<br>
-<br>
+  <div class="col s12 m6 l4">
+    <div class="card grey">
+      <div class="card-content white-text">
+        <span class="card-title"><%= editor.name %></span>
+        <p><%= editor.email %></p>
+        <p><%= editor.phone %></p>
+        <p><%= editor.website %></p>
+        <br>
+        <p>Current Tasks: <%= editor.tasks.count %></p>
+      </div>
+      <div class="card-action">
+        <a class="white-text" href='/editors/<%= editor.id %>'><i class="material-icons">format_list_bulleted</i></a>
+        <a class="white-text" href='/editors/<%= editor.id %>/edit'><i class="material-icons">edit</i></a>
+        <a class="white-text" href='/editors/<%= editor.id %>/delete'><i class="material-icons">delete</i></a>
+        <a class="white-text" href='/tasks'><i class="material-icons">add</i></a>
+      </div>
+    </div>
+  </div>
 <% end %>
-<p>Add a <a href='/editors/new'>new editor.</a></p>
+</div>

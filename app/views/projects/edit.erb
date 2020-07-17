@@ -1,4 +1,4 @@
-<h1>Editing an existing project!</h1>
+<h4>PROJECT EDIT</h4>
 <form action = '/projects/<%= @project.id %>/edit' method='post'>
 <input id='hidden' type='hidden' name='_method' value='patch'>
 <p>Author:
@@ -8,9 +8,21 @@
 <p>Notes:
 <input type='text' id='notes' name='notes' value='<%= @project.notes %>' if='notes' size=30>
 <p>Status:
-<input type='radio' id='in_progress' value='FALSE' name='complete'>
-<label for='status'>In Progress</label>
-<input type='radio' id='completed' value='TRUE' name='complete'>
-<label for='status'>Completed</label>
-<input type='submit' id='submit' value='submit'>
+
+<label>
+<input type='radio' id='status' value='FALSE' name='complete'>
+<span>In Progress</span>
+</label>
+
+<label>
+<input type='radio' id='status' value='TRUE' name='complete'>
+<span>Completed</span>
+</label>
+
+<br>
+<br>
+<button type='submit' id='submit' class='btn grey waves-effect waves-light'>
+Edit Project
+<i class='material-icons right'>send</i>
+</button>
 </form>

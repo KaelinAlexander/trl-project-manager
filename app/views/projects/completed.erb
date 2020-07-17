@@ -1,17 +1,34 @@
-<h1>Here are all of our completed projects:</h1>
+<button class='btn grey waves-effect waves-light text-white right'>
+<a href='/projects/new' style='color:white'>New Project</a>
+<i class='material-icons right'>add</i>
+</button>
+<h4>COMPLETED PROJECTS</h4>
 <br>
+<div class="row">
 <% @projects.each do |project| %>
-<div>
   <% if project.complete == TRUE %>
-    <h2><%= project.author %></h2>
-    <h3><%= project.title %></h3>
-    <br>
-    <a href='/projects/<%= project.id %>'>Project Details</a>
-  <% end %>
+  <div class="col s12 m6 l4">
+    <div class="card grey">
+      <div class="card-content white-text">
+        <span class="card-title"><%= project.author %>'s <%= project.title %></span>
+        <p><%= project.notes %></p>
+      </div>
+      <div class="card-action">
+        <a class="white-text" href='/projects/<%= project.id %>'><i class="material-icons">format_list_bulleted</i></a>
+        <a class="white-text" href='/projects/<%= project.id %>/edit'><i class="material-icons">edit</i></a>
+        <a class="white-text" href='/projects/<%= project.id %>/delete'><i class="material-icons">delete</i></a>
+        <a class="white-text" href='/<%= project.id %>/tasks/new'><i class="material-icons">add</i></a>
+      </div>
+    </div>
+  </div>
 <% end %>
+<% end %>
+</div>
 <br>
 <br>
 <br>
-<p>To view in-process projects, <a href='/projects'>click here.</a></p>
-<p>Make a <a href='/projects/new'>new project.</a></p>
-<p>Add an <a href='editors/new'>editor.</a></p>
+<button class='btn grey waves-effect waves-light text-white'>
+<a href='/projects' style='color:white'>Current Projects</a>
+<i class='material-icons right'>new_releases</i>
+</button>
+<br>

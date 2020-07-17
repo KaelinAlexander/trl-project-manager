@@ -1,4 +1,6 @@
-<h1>Select Tasks to add to this project, or create your own.</h1>
+<h4>New tasks for <%= @project.author %>'s <%= @project.title %></h4>
+
+<h5>Select Tasks to add to this project, or create your own.</h5>
 
 <form action='/<%= @project.id %>/tasks/new' method='post'>
 
@@ -22,8 +24,10 @@
 <br>
 
 <% @default_tasks.each do |default| %>
-<label for='task_1'><%= default %></label>
+<label>
 <input type='checkbox' name='project[tasks][][name]' value='<%= default %>'>
+<span><%= default %></span>
+</label>
 <br>
 <input type='date' name='project[tasks][][start_date]'>
 <input type='date' name='project[tasks][][end_date]'>
@@ -39,7 +43,9 @@
 <br>
 <br>
 <% end %>
-
-<input type='submit' value="submit">
+<button type='submit' id='submit' class='btn grey waves-effect waves-light'>
+Make Task(s)
+<i class='material-icons right'>send</i>
+</button>
 
 </form>
