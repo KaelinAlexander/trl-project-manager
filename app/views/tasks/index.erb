@@ -1,0 +1,10 @@
+<% if @needs && @needs.empty? %>
+  <h2>No tasks need assigning.</h2>
+<% elsif @needs %>
+  <h2>The following tasks need assigning:</h2>
+  <br>
+  <% @needs.each do |need| %>
+  <%= need.name %> for <%= need.project.author %>
+  <br>
+  <% end %>
+<% end %>

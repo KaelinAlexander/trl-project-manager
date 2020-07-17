@@ -1,0 +1,9 @@
+<h2><%= @user.username %></h2>
+<form action='/users/<%= @user.id%>/edit' method='post'>
+<input id='hidden' type='hidden' name='_method' value='patch'>
+<p>Email:
+<input type='text' name='email' value='<%= @user.email %>'>
+<p>Title:
+<input tyle='text' name='title' value='<%= @user.title %>'>
+<input type='submit' id='submit' value='Submit'>
+</form>

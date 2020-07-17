@@ -11,11 +11,20 @@ class TasksController < ApplicationController
     erb :index
   end
 
+  get '/tasks' do
+    @needs = Task.all.select{ |task| task.editors.empty? }
+    erb :'/tasks/index'
+  end
+
   get '/:id/tasks/new' do
     @project = Project.find_by_id(params[:id])
     @default_tasks = task_list
     @editors = Editor.all
-    erb :'/tasks/new'
+    if @project
+      erb :'/tasks/new'
+    else
+      redirect '/projects/index'
+    end
   end
 
   post '/:id/tasks/new' do

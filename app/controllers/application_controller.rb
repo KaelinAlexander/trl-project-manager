@@ -52,6 +52,28 @@ class ApplicationController < Sinatra::Base
     redirect '/login'
   end
 
+  get '/users/:id' do
+    @user = User.find_by_id(session[:user_id])
+    erb :'/users/show'
+  end
+
+  get '/users/:id/edit' do
+    @user = User.find_by_id(params[:id])
+    erb :'/users/edit'
+  end
+
+  patch '/users/:id/edit' do
+    @user = User.find_by_id(params[:id])
+    if @user.id == current_user.id
+      @user.email = params[:email]
+      @user.title = params[:title]
+      @user.save
+        redirect "/users/#{@user.id}"
+    else
+        redirect "/users/#{@user.id}/edit"
+    end
+  end
+
     helpers do
       def logged_in_redirect
         redirect '/projects' if logged_in

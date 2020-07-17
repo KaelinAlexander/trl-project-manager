@@ -7,7 +7,7 @@
 <input type='date' id='start_date' name='start_date' value='<%= @task.start_date %>' if='start_date'>
 <p>End Date:
 <input type='date' id='end_date' name='end_date' value='<%= @task.end_date %>' if='end_date'>
-<p>Editor:
+<div class='input-field col s12'>
   <select name='editor' id='editor'>
     <% @assigned = AssignedTask.find_by(task_id: @task.id) %>
     <% @editors = Editor.all %>
@@ -16,6 +16,8 @@
     <option value='<%= editor.name %>' <% if @assigned && @assigned.editor_id == editor.id %>selected<% end %>><%= editor.name %></option>
     <% end %>
   </select>
+  <label>Select an Editor</label>
+</div>
 <p>Status:
   <br>
   <br>

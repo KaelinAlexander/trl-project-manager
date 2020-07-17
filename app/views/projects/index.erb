@@ -1,31 +1,29 @@
 <% if !@projects.empty? %>
-<h1>Here are all of your current projects:</h1>
-<br>
+<h3>Here are all of your current projects:</h3>
+<div class="row">
 <% @projects.each do |project| %>
-<div>
   <% if project.complete == FALSE || project.complete == nil %>
-    <h2><%= project.author %></h2>
-    <h3><%= project.title %></h3>
-    <br>
-    <a href='/projects/<%= project.id %>'>Project Details</a>
-  <% end %>
+  <div class="col s12 m6 l4">
+    <div class="card grey">
+      <div class="card-content white-text">
+        <span class="card-title"><%= project.author %>'s <%= project.title %></span>
+        <p><%= project.notes %></p>
+      </div>
+      <div class="card-action">
+        <a class="white-text" href='/projects/<%= project.id %>'>Details</a>
+        <a class="white-text" href='/projects/<%= project.id %>/edit'>Edit</a>
+        <a class="white-text" href='/projects/<%= project.id %>/delete'>Delete</a>
+      </div>
+    </div>
+  </div>
 <% end %>
+<% end %>
+</div>
 <br>
 <br>
-<% if @needs && @needs.empty? %>
-  <h3>No tasks need assigning.</h3>
-<% elsif @needs %>
-  <h3>The following tasks need assigning:</h3>
-  <br>
-  <% @needs.each do |need| %>
-  <%= need.name %> for <%= need.project.author %>
-  <br>
-  <% end %>
-<% end %>
 <br>
 <p>To view completed projects, <a href='/projects/completed'>click here.</a></p>
 <p>Make a <a href='/projects/new'>new project.</a></p>
-<p>Add an <a href='editors/new'>editor.</a></p>
 <% else %>
 <h1>You have no projects. <a href='/projects/new'>Make one?</a></h1>
 <% end %>

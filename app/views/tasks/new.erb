@@ -8,13 +8,15 @@
 <input type='date' name='project[tasks][][start_date]'>
 <input type='date' name='project[tasks][][end_date]'>
 <br>
-<p>Editor:
+<div class="input-field col s12">
   <select name='project[tasks][][editor]' id='editor'>
     <option disabled selected value> - Select an Editor - </option>
     <% @editors.each do |editor| %>
     <option value='<%= editor.name %>'><%= editor.name %></option>
     <% end %>
   </select>
+  <label>Select an Editor</label>
+</div>
 <br>
 <br>
 <br>

@@ -10,20 +10,28 @@ class ProjectsController < ApplicationController
   get '/projects' do
     @projects = Project.all
     @needs = Task.all.select{ |task| task.editors.empty? }
-    erb :'projects/index'
+    if @projects
+      erb :'/projects/index'
+    else
+      redirect '/projects/new'
+    end
   end
 
   get '/projects/completed' do
     @projects = Project.all
-    erb :'projects/completed'
+    erb :'/projects/completed'
   end
 
   post '/projects' do
-    @project = current_user.projects.build(params)
-    if @project.save
-      redirect '/projects'
+    if logged_in
+      @project = current_user.projects.build(params)
+      if @project.save
+        redirect '/projects'
+      else
+        redirect '/projects/new'
+      end
     else
-      redirect '/projects/new'
+
     end
   end
 
@@ -34,7 +42,11 @@ class ProjectsController < ApplicationController
   get '/projects/:id' do
     not_logged_in_redirect
     @project = Project.find_by_id(params[:id])
-    erb :'/projects/show'
+    if @project
+      erb :'/projects/show'
+    else
+      redirect '/projects'
+    end
   end
 
   get '/projects/:id/edit' do

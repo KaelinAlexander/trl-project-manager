@@ -6,43 +6,79 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-     <!-- Compiled and minified JavaScript -->
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
-       </script>
     <title>The Reading List Project Manager</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
+
+  <!-- Nav Bar -->
   <nav>
-    <div class="nav-wrapper">
+    <div class="container">
       <a href="#" class="brand-logo">The Reading List Project Manager</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% unless logged_in %>
+        <li><a href='/signup'>Sign Up</a></li>
+        <li><a href='/login'>Login</a></li>
+        <% else %>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/editors">Editors</a></li>
         <li><a href="/tasks">Tasks</a></li>
+        <li><a href="/users/<%= session[:user_id] %>"><i class='material-icons' style='margin-top: 4px'>account_box</i></a></li>
+        <% end %>
       </ul>
     </div>
   </nav>
-  <body class="purple lighten-3">
-    <div class="wrapper">
+  <!-- End Nav Bar -->
+
+<!-- Main Content -->
+  <body class="white">
+    <div class="container">
 
         <%= yield %>
 
-      <footer class="branding">
-        <small>&copy; 2020 <strong>TrlProjectManager</strong></small>
-      </footer>
     </div>
+<!-- End Main Content -->
 
+<!-- Footer -->
+
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <p class="grey-text text-lighten-4">Manager is currently in alpha.</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2020 Kaelin Alexander
+            <% if logged_in %>
+            <a class="grey-text text-lighten-4 right" href="/logout">Logout</a>
+            <% end %>
+            </div>
+          </div>
+        </footer>
+
+<!-- End Footer -->
+
+<!-- Scripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--[if lt IE 7]>
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
+    <script>
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+    </script>
+<!-- End Scripts -->
   </body>
 </html>
