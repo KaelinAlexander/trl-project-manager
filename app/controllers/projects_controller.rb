@@ -8,8 +8,8 @@ class ProjectsController < ApplicationController
   end
 
   get '/projects' do
+    not_logged_in_redirect
     @projects = Project.all
-    @needs = Task.all.select{ |task| task.editors.empty? }
     if @projects
       erb :'/projects/index'
     else
@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   end
 
   get '/projects/completed' do
+    not_logged_in_redirect
     @projects = Project.all
     erb :'/projects/completed'
   end
@@ -58,7 +59,7 @@ class ProjectsController < ApplicationController
   patch '/projects/:id/edit' do
     not_logged_in_redirect
     @project = Project.find_by_id(params[:id])
-      if @project.user_id == current_user.id
+      if logged_in
         @project.author = params[:author]
         @project.title = params[:title]
         @project.notes = params[:notes]
@@ -71,18 +72,17 @@ class ProjectsController < ApplicationController
   end
 
   get '/projects/:id/delete' do
+    not_logged_in_redirect
     @project = Project.find_by_id(params[:id])
     erb :'/projects/delete'
   end
 
   delete '/projects/:id' do
     @project = Project.find_by_id(params[:id])
-    if @project && logged_in && @project.user_id == current_user.id
+    if logged_in
       @project.destroy
     end
       redirect '/projects'
   end
-
-
 
 end

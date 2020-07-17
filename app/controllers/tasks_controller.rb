@@ -12,11 +12,18 @@ class TasksController < ApplicationController
   end
 
   get '/tasks' do
+    not_logged_in_redirect
+    @tasks = Task.all
     @needs = Task.all.select{ |task| task.editors.empty? }
-    erb :'/tasks/index'
+    if !@tasks.empty?
+      erb :'/tasks/index'
+    else
+      erb :'/tasks/exception'
+    end
   end
 
   get '/:id/tasks/new' do
+    not_logged_in_redirect
     @project = Project.find_by_id(params[:id])
     @default_tasks = task_list
     @editors = Editor.all
@@ -31,7 +38,7 @@ class TasksController < ApplicationController
     @project = Project.find_by_id(params[:id])
     @new_tasks = params[:project][:tasks]
     @new_tasks.each do |task|
-      if task[:name] && task[:name] != ""
+      if @project && task[:name] && task[:name] != ""
           new_task = Task.create(name: task[:name], start_date: task[:start_date], end_date: task[:end_date], inquired: FALSE, assigned: FALSE, transmitted: FALSE, completed: FALSE, invoiced: FALSE, paid: FALSE)
           if task[:editor]
             new_task.editors << Editor.find_by(name: task[:editor])
@@ -45,12 +52,14 @@ class TasksController < ApplicationController
   end
 
   get '/tasks/:id' do
+    not_logged_in_redirect
     @task = Task.find_by_id(params[:id])
     @project = Project.find_by_id(@task.project_id)
     erb :'/tasks/show'
   end
 
   get '/tasks/:id/edit' do
+    not_logged_in_redirect
     @task = Task.find_by_id(params[:id])
     @project = Project.find_by_id(@task.project_id)
     erb :'/tasks/edit'
@@ -60,7 +69,7 @@ class TasksController < ApplicationController
     @task = Task.find_by_id(params[:id])
     @project = Project.find_by_id(@task.project_id)
     @editor = Editor.find_by(name: params[:editor])
-      if @project.user_id == current_user.id
+      if logged_in
         @task.name = params[:name]
         @task.start_date = params[:start_date]
         @task.end_date = params[:end_date]
@@ -100,13 +109,14 @@ class TasksController < ApplicationController
           @task.editors << @editor
           @task.save
         end
-          redirect "/tasks/#{@task.id}"
+          redirect "/tasks"
       else
         redirect "/tasks/#{@task.id}/edit"
       end
     end
 
     get '/tasks/:id/delete' do
+      not_logged_in_redirect
       @task = Task.find_by_id(params[:id])
       erb :'/tasks/delete'
     end

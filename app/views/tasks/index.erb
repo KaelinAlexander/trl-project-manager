@@ -1,10 +1,52 @@
+
+<h5>Here's the task lineup:</h5>
+<div class='row'>
+<% @tasks.each do |task| %>
+<div class="col s12 m6 l4">
+  <div class="card grey">
+    <div class="card-content white-text">
+      <span class="card-title"><%= task.name %>'s <%= task.project.author %></span>
+      <p>Start: <%= task.start_date %></p>
+      <p>End: <%= task.end_date %></p>
+      <% if !task.editors.empty? %>
+      <p>Editor: <%= task.editors.first.name %></p>
+      <% else %>
+      <p>No editor assigned.
+        <br>
+        <a href='/tasks/<%= task.id %>/edit'>Assign one?</a></p>
+      <% end %>
+    </div>
+    <div class="card-action">
+      <a class="white-text" href='/tasks/<%= task.id %>'>Details</a>
+      <a class="white-text" href='/tasks/<%= task.id %>/edit'>Edit</a>
+      <a class="white-text" href='/tasks/<%= task.id %>/delete'>Delete</a>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+<!-- Flagging for Needs -->
 <% if @needs && @needs.empty? %>
-  <h2>No tasks need assigning.</h2>
-<% elsif @needs %>
-  <h2>The following tasks need assigning:</h2>
-  <br>
+  <h5>No tasks need assigning.</h5>
+<% else %>
+  <h5>The following tasks need assigning:</h5>
+  <div class='row'>
   <% @needs.each do |need| %>
-  <%= need.name %> for <%= need.project.author %>
-  <br>
+  <div class="col s12 m6 l4">
+    <div class="card grey">
+      <div class="card-content white-text">
+        <span class="card-title"><%= need.name %>'s <%= need.project.author %></span>
+        <p>Start: <%= need.start_date %></p>
+        <p>End: <%= need.end_date %></p>
+        <p><a href='/tasks/<%= need.id %>/edit'>Assign an editor?</a></p>
+      </div>
+      <div class="card-action">
+        <a class="white-text" href='/tasks/<%= need.id %>'>Details</a>
+        <a class="white-text" href='/tasks/<%= need.id %>/edit'>Edit</a>
+        <a class="white-text" href='/tasks/<%= need.id %>/delete'>Delete</a>
+      </div>
+    </div>
+  </div>
   <% end %>
 <% end %>
+</div>

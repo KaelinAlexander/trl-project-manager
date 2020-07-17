@@ -8,11 +8,13 @@ class EditorsController < ApplicationController
   end
 
   get '/editors' do
+    not_logged_in_redirect
     @editors = Editor.all
     erb :'/editors/index'
   end
 
   get '/editors/new' do
+  not_logged_in_redirect
     erb :'/editors/new'
   end
 
@@ -34,16 +36,19 @@ class EditorsController < ApplicationController
   end
 
   get '/editors/:id/reassign' do
+    not_logged_in_redirect
     @editor = Editor.find_by_id(params[:id])
     erb :'/editors/reassign'
   end
 
   get '/editors/:id' do
+    not_logged_in_redirect
     @editor = Editor.find_by_id(params[:id])
     erb :'/editors/show'
   end
 
   get '/editors/:id/edit' do
+    not_logged_in_redirect
     @editor = Editor.find_by_id(params[:id])
     erb :'/editors/edit'
   end
@@ -63,6 +68,7 @@ class EditorsController < ApplicationController
     end
 
   get '/editors/:id/delete' do
+    not_logged_in_redirect
     @editor = Editor.find_by_id(params[:id])
     erb :'/editors/delete'
   end
