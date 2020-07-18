@@ -143,7 +143,7 @@ class TasksController < ApplicationController
       if @task && logged_in
         @task.destroy
       end
-        redirect "/projects"
+        redirect "/projects/#{@project.id}"
     end
 
 end

@@ -7,8 +7,10 @@
 <label for='task_2'>Custom Task</label>
 <input type='text' name='project[tasks][][name]'>
 <br>
-<input type='date' name='project[tasks][][start_date]'>
-<input type='date' name='project[tasks][][end_date]'>
+<label for='start'>Start Date</label>
+<input type='date' id='start' name='project[tasks][][start_date]'>
+<label for='end'>End Date</label>
+<input type='date' id='end' name='project[tasks][][end_date]'>
 <br>
 <div class="input-field col s12">
   <select name='project[tasks][][editor]' id='editor'>
@@ -29,8 +31,10 @@
 <span><%= default %></span>
 </label>
 <br>
-<input type='date' name='project[tasks][][start_date]'>
-<input type='date' name='project[tasks][][end_date]'>
+<label for='start_date'>Start Date</label>
+<input type='date' id='start_date' name='project[tasks][][start_date]'>
+<label for='end_date'>End Date</label>
+<input type='date' id='end_date' name='project[tasks][][end_date]'>
 <br>
 <p>Editor:
   <select name='project[tasks][][editor]' id='editor'>
