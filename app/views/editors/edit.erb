@@ -1,4 +1,4 @@
-<h1>Edit information for <%= @editor.name %></h1>
+<h4>Edit information for <%= @editor.name %></h4>
 <form action = '/editors/<%= @editor.id %>/edit' method='post'>
 <input id='hidden' type='hidden' name='_method' value='patch'>
 <p>Name:
@@ -11,5 +11,10 @@
 <input type='text' id='notes' name='website' size=30 value='<%= @editor.website %>' if='website'>
 <p>Notes:
 <input type='text' id='notes' name='notes' size=30 value='<%= @editor.notes %>' if='notes'>
-<input type='submit' id='submit' value='Submit'>
+<br>
+<br>
+<button type='submit' id='submit' class='btn grey waves-effect waves-light'>
+Submit
+<i class='material-icons right'>send</i>
+</button>
 </form>

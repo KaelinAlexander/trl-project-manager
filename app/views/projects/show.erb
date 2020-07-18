@@ -10,7 +10,7 @@
 <% if !@project.tasks.empty? %>
 <% @project.tasks.each do |task| %>
 <div class="col s12 m6 l4">
-  <div class="card grey">
+  <div class="card grey small">
     <div class="card-content white-text">
       <span class="card-title"><%= task.name %></span>
       <p>Start: <%= task.start_date %></p>

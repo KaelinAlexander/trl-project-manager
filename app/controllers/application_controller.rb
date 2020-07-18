@@ -10,6 +10,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    not_logged_in_redirect
+    @user = current_user
     erb :index
   end
 

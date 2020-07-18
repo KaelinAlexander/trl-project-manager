@@ -1,8 +1,15 @@
-<h1>Are you sure you want to delete this task?</h1>
+<h4>Are you sure you want to delete this task?</h4>
 <br>
-<a href='/projects/<%= @task.project_id %>'>No, I changed my mind.</a>
+<button class='btn grey waves-effect waves-light text-white'>
+<a href='/projects/<%= @task.project_id %>' style='color:white'>Nevermind</a>
+<i class='material-icons right'>send</i>
+</button>
+<br>
 <br>
 <form action='/tasks/<%= @task.id %>' method='post'>
   <input id='hidden' type='hidden' name='_method' value='delete'>
-  <input type='submit' value='Yes, Delete Task'>
+  <button type='submit' id='submit' class='btn grey waves-effect waves-light'>
+  Delete Task
+  <i class='material-icons right'>send</i>
+  </button>
 </form>

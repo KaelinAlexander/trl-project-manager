@@ -1,4 +1,9 @@
-<h2><%= @user.username %></h2>
-<h4>Title: <%= @user.title %></h4>
-<h4>Email: <%= @user.email %></h4>
-<h5><a href='/users/<%= @user.id %>/edit'>Edit this account.</a></h5>
+<a href='/users/<%= @user.id %>/edit'>
+<button class='btn grey waves-effect waves-light right'>
+Edit Account
+<i class='material-icons right'>edit</i>
+</button>
+</a>
+<h4><%= @user.username %></h4>
+<h5>Title: <%= @user.title %></h5>
+<h5>Email: <%= @user.email %></h5>

@@ -1,4 +1,4 @@
-<h4>PROJECT EDIT</h4>
+<h4>Editing <%= @project.author %>'s <%= @project.title %></h4>
 <form action = '/projects/<%= @project.id %>/edit' method='post'>
 <input id='hidden' type='hidden' name='_method' value='patch'>
 <p>Author:
@@ -22,7 +22,7 @@
 <br>
 <br>
 <button type='submit' id='submit' class='btn grey waves-effect waves-light'>
-Edit Project
+Submit
 <i class='material-icons right'>send</i>
 </button>
 </form>

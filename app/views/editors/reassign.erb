@@ -1,4 +1,4 @@
-Before deletion, please reassign the following tasks:
+<h4>Before deletion, please reassign the following tasks:</h4>
 <form action='/editors/<%= @editor.id %>/reassign' method='post'>
 <input id='hidden' type='hidden' name='_method' value='patch'>
 <% @editor.tasks.each do |task| %>

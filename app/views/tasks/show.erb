@@ -1,10 +1,30 @@
-<%= @task.name %> for <%= @task.project.author %>'s <%= @task.project.title %>
+<a href='/tasks/<%= @task.id %>/edit'>
+<button class='btn grey waves-effect waves-light right'>
+Edit Task
+<i class='material-icons right'>edit</i>
+</button>
+</a>
+<h4><%= @task.name %> for <%= @task.project.author %>'s <%= @task.project.title %></h4>
+<a href='/tasks/<%= @task.id %>/delete'>
+<button class='btn grey waves-effect waves-light right'>
+Remove Task
+<i class='material-icons right'>delete</i>
+</button>
+</a>
 <% if @task.editors.empty? %>
 <h4>This task needs an editor. <a href='/tasks/<%= @task.id %>/edit'>Assign one?</a></h4>
+<a href='/projects/<%= @task.project.id %>'>
+<button class='btn grey waves-effect waves-light right'>
+Project Page
+<i class='material-icons right'>book</i>
+</button>
+</a>
 <% else %>
-<h4>Assigned to: <%= @task.editors.first.name %></h4>
+<h5>Currently assigned to: <%= @task.editors.first.name %></h5>
+<a href='/projects/<%= @task.project.id %>'>
+<button class='btn grey waves-effect waves-light right'>
+Project Page
+<i class='material-icons right'>book</i>
+</button>
+</a>
 <% end %>
-<br>
-<h4><a href='/tasks/<%= @task.id %>/edit'>Edit</a> this task.</h4>
-<br>
-<h4>Back to the <a href='/projects/<%= @task.project.id %>'>project page.</a></h4>

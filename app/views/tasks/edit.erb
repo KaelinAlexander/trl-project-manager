@@ -1,4 +1,4 @@
-<h1>Editing <%= @task.name %></h1>
+<h4>Editing <%= @task.name %></h4>
 <form action = '/tasks/<%= @task.id %>/edit' method='post'>
 <input id='hidden' type='hidden' name='_method' value='patch'>
 <p>Name:

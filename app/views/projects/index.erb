@@ -4,6 +4,10 @@
 </button>
 <% if !@projects.empty? %>
 <h4>CURRENT PROJECTS</h4>
+<button class='btn grey waves-effect waves-light text-white right'>
+<a href='/projects/completed' style='color:white'>Completed Projects</a>
+<i class='material-icons right'>access_time</i>
+</button>
 <div class="row">
 <% @projects.each do |project| %>
   <% if project.complete == FALSE || project.complete == nil %>
@@ -35,12 +39,11 @@
 <br>
 <br>
 <br>
-<button class='btn grey waves-effect waves-light text-white'>
+<% else %>
+<h4>You have no projects.</h4>
+<button class='btn grey waves-effect waves-light text-white right'>
 <a href='/projects/completed' style='color:white'>Completed Projects</a>
 <i class='material-icons right'>access_time</i>
 </button>
-
-<% else %>
-<h4>You have no projects.</h4>
 <br>
 <% end %>
