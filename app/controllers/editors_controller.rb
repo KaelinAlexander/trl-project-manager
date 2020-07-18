@@ -10,7 +10,11 @@ class EditorsController < ApplicationController
   get '/editors' do
     not_logged_in_redirect
     @editors = Editor.all
-    erb :'/editors/index'
+      if !@editors.empty?
+        erb :'/editors/index'
+      else
+        erb :'/editors/exception'
+      end
   end
 
   get '/editors/new' do
