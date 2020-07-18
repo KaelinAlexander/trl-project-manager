@@ -69,8 +69,12 @@ class TasksController < ApplicationController
   get '/tasks/:id/edit' do
     not_logged_in_redirect
     @task = Task.find_by_id(params[:id])
-    @project = Project.find_by_id(@task.project_id)
-    erb :'/tasks/edit'
+    if @task
+      @project = Project.find_by_id(@task.project_id)
+      erb :'/tasks/edit'
+    else
+      redirect '/tasks'
+    end
   end
 
   patch '/tasks/:id/edit' do
@@ -126,16 +130,20 @@ class TasksController < ApplicationController
     get '/tasks/:id/delete' do
       not_logged_in_redirect
       @task = Task.find_by_id(params[:id])
-      erb :'/tasks/delete'
+      if @task
+        erb :'/tasks/delete'
+      else
+        redirect '/tasks'
+      end
     end
 
     delete '/tasks/:id' do
       @task = Task.find_by_id(params[:id])
       @project = Project.find_by_id(@task.project_id)
-      if @task && logged_in && @project.user_id == current_user.id
+      if @task && logged_in
         @task.destroy
       end
-        redirect "/projects/#{@project.id}"
+        redirect "/projects"
     end
 
 end

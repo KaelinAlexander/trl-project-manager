@@ -11,7 +11,7 @@
 <div class="col s12 m6 l4">
   <div class="card small grey">
     <div class="card-content white-text">
-      <span class="card-title"><%= task.name %> for <%= task.project.title %></span>
+      <span class="card-title"><%= task.name %> for <%= task.project.author %>'s <%= task.project.title %></span>
       <p>Start: <%= task.start_date %></p>
       <p>End: <%= task.end_date %></p>
       <br>
@@ -33,21 +33,21 @@
 <!-- Flagging for Needs -->
 <% if @needs && @needs.empty? %>
   <h5>No tasks need assigning.</h5>
-<% else %>
+<% elsif @needs && !@needs.empty? %>
   <h5>The following tasks need assigning:</h5>
   <div class='row'>
   <% @needs.each do |need| %>
   <div class="col s12 m6 l4">
     <div class="card small grey">
       <div class="card-content white-text">
-        <span class="card-title"><%= need.name %>'s <%= need.project.author %></span>
+        <span class="card-title"><%= need.name %> for <%= need.project.author %>'s <%= need.project.title %></span>
         <p>Start: <%= need.start_date %></p>
         <p>End: <%= need.end_date %></p>
       </div>
       <div class="card-action">
-        <a class="white-text" href='/tasks/<%= task.id %>'><i class="material-icons">format_list_bulleted</i></a>
-        <a class="white-text" href='/tasks/<%= task.id %>/edit'><i class="material-icons">edit</i></a>
-        <a class="white-text" href='/tasks/<%= task.id %>/delete'><i class="material-icons">delete</i></a>
+        <a class="white-text" href='/tasks/<%= need.id %>'><i class="material-icons">format_list_bulleted</i></a>
+        <a class="white-text" href='/tasks/<%= need.id %>/edit'><i class="material-icons">edit</i></a>
+        <a class="white-text" href='/tasks/<%= need.id %>/delete'><i class="material-icons">delete</i></a>
       </div>
     </div>
   </div>

@@ -29,11 +29,8 @@ class ApplicationController < Sinatra::Base
     end
 
   get '/login' do
-    if logged_in
-      redirect '/projects'
-    else
+    logged_in_redirect
       erb :'sessions/new'
-    end
   end
 
   post '/login' do
@@ -53,16 +50,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:id' do
+    not_logged_in_redirect
     @user = User.find_by_id(session[:user_id])
     erb :'/users/show'
   end
 
   get '/users/:id/edit' do
-    @user = User.find_by_id(params[:id])
+    not_logged_in_redirect
+    @user = User.find_by_id(session[:user_id])
     erb :'/users/edit'
   end
 
   patch '/users/:id/edit' do
+    not_logged_in_redirect
     @user = User.find_by_id(params[:id])
     if @user.id == current_user.id
       @user.email = params[:email]

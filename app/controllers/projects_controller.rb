@@ -53,7 +53,11 @@ class ProjectsController < ApplicationController
   get '/projects/:id/edit' do
     not_logged_in_redirect
     @project = Project.find_by_id(params[:id])
-    erb :'/projects/edit'
+    if @project
+      erb :'/projects/edit'
+    else
+      redirect '/projects'
+    end
   end
 
   patch '/projects/:id/edit' do
@@ -74,7 +78,11 @@ class ProjectsController < ApplicationController
   get '/projects/:id/delete' do
     not_logged_in_redirect
     @project = Project.find_by_id(params[:id])
-    erb :'/projects/delete'
+    if @project
+      erb :'/projects/delete'
+    else
+      redirect '/projects'
+    end
   end
 
   delete '/projects/:id' do
