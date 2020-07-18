@@ -12,6 +12,14 @@
       <div class="card-content white-text">
         <span class="card-title"><%= project.author %>'s <%= project.title %></span>
         <p><%= project.notes %></p>
+        <% started = User.find_by_id(project.user_id) %>
+        <% if started %>
+        <br>
+        <p>Started By: <%= started.username %></p>
+        <% else %>
+        <br>
+        <p>Started by a former user.</p>
+        <% end %>
       </div>
       <div class="card-action">
         <a class="white-text" href='/projects/<%= project.id %>'><i class="material-icons">format_list_bulleted</i></a>

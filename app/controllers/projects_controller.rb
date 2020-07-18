@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
   patch '/projects/:id/edit' do
     not_logged_in_redirect
     @project = Project.find_by_id(params[:id])
-      if logged_in
+      if logged_in && @project.user_id == current_user.id
         @project.author = params[:author]
         @project.title = params[:title]
         @project.notes = params[:notes]
@@ -87,7 +87,7 @@ class ProjectsController < ApplicationController
 
   delete '/projects/:id' do
     @project = Project.find_by_id(params[:id])
-    if logged_in
+    if logged_in && @project.user_id == current_user.id
       @project.destroy
     end
       redirect '/projects'
